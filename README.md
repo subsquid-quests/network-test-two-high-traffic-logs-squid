@@ -132,27 +132,29 @@ A healthy response should look similar to
    ```
    The command should output lines like these:
    ```
-   [eth-processor] {"level":2,"time":1705681499120,"ns":"sqd:commands","msg":"PROCESS:ETH"}
-   [moonbeam-processor] {"level":2,"time":1705681499148,"ns":"sqd:commands","msg":"PROCESS:MOONBEAM"}
-   [base-processor] {"level":2,"time":1705681499155,"ns":"sqd:commands","msg":"PROCESS:BASE"}
-   [bsc-processor] {"level":2,"time":1705681499163,"ns":"sqd:commands","msg":"PROCESS:BSC"}
-   [eth-processor] 01:24:59 INFO  sqd:processor processing blocks from 955722
-   [base-processor] 01:24:59 INFO  sqd:processor processing blocks from 1208926
-   [moonbeam-processor] 01:24:59 INFO  sqd:processor processing blocks from 166845
-   [bsc-processor] 01:24:59 INFO  sqd:processor processing blocks from 16996735
-   [eth-processor] 01:24:59 INFO  sqd:processor using archive data source
-   [eth-processor] 01:24:59 INFO  sqd:processor prometheus metrics are served at port 34253
-   [base-processor] 01:24:59 INFO  sqd:processor using archive data source
-   [base-processor] 01:24:59 INFO  sqd:processor prometheus metrics are served at port 40205
-   [moonbeam-processor] 01:24:59 INFO  sqd:processor using archive data source
-   [moonbeam-processor] 01:24:59 INFO  sqd:processor prometheus metrics are served at port 33691
-   [bsc-processor] 01:24:59 INFO  sqd:processor using archive data source
-   [bsc-processor] 01:24:59 INFO  sqd:processor prometheus metrics are served at port 41199
-   [moonbeam-processor] 01:25:00 INFO  sqd:processor:mapping Got 0 burn txs and 0 USDT transfers
-   [moonbeam-processor] 01:25:00 INFO  sqd:processor 171971 / 5325985, rate: 3823 blocks/sec, mapping: 2729 blocks/sec, 1364 items/sec, eta: 23m
-   [base-processor] 01:25:00 INFO  sqd:processor:mapping Got 0 burn txs and 0 USDT transfers
-   [base-processor] 01:25:00 INFO  sqd:processor 1477379 / 9442733, rate: 175758 blocks/sec, mapping: 8032 blocks/sec, 1339 items/sec, eta: 45s
-   [base-processor] 01:25:02 INFO  sqd:processor:mapping Got 1 burn txs and 0 USDT transfers
+   [bsc-processor] {"level":2,"time":1705687630304,"ns":"sqd:commands","msg":"PROCESS:BSC"}
+   [eth-processor] {"level":2,"time":1705687630303,"ns":"sqd:commands","msg":"PROCESS:ETH"}
+   [moonbeam-processor] {"level":2,"time":1705687630332,"ns":"sqd:commands","msg":"PROCESS:MOONBEAM"}
+   [base-processor] {"level":2,"time":1705687630381,"ns":"sqd:commands","msg":"PROCESS:BASE"}
+   [eth-processor] 03:07:10 INFO  sqd:processor processing blocks from 11889386
+   [bsc-processor] 03:07:10 INFO  sqd:processor processing blocks from 9006623
+   [moonbeam-processor] 03:07:10 INFO  sqd:processor processing blocks from 1726375
+   [eth-processor] 03:07:10 INFO  sqd:processor using archive data source
+   [eth-processor] 03:07:10 INFO  sqd:processor prometheus metrics are served at port 39363
+   [base-processor] 03:07:10 INFO  sqd:processor processing blocks from 7492963
+   [bsc-processor] 03:07:10 INFO  sqd:processor using archive data source
+   [bsc-processor] 03:07:10 INFO  sqd:processor prometheus metrics are served at port 41303
+   [moonbeam-processor] 03:07:10 INFO  sqd:processor using archive data source
+   [moonbeam-processor] 03:07:10 INFO  sqd:processor prometheus metrics are served at port 46845
+   [base-processor] 03:07:10 INFO  sqd:processor using archive data source
+   [base-processor] 03:07:10 INFO  sqd:processor prometheus metrics are served at port 45573
+   [eth-processor] 03:07:11 WARN  sqd:validation Sentinel value was used in place of BlockHeader.baseFeePerGas. This message will be printed only once. To suppress it entirely set SQD_ALLOW_SENTINEL=BlockHeader.baseFeePerGas env variable. Use commas (,) to separate multiple labels.
+   [eth-processor] 03:07:11 INFO  sqd:processor:mapping Got 0 ERC20 transfers
+   [eth-processor] 03:07:11 INFO  sqd:processor 11892539 / 18959150, rate: 2377 blocks/sec, mapping: 7439 blocks/sec, 1860 items/sec, eta: 50m
+   [eth-processor] 03:07:15 INFO  sqd:processor:mapping Got 0 ERC20 transfers
+   [eth-processor] 03:07:16 INFO  sqd:processor:mapping Got 0 ERC20 transfers
+   [eth-processor] 03:07:16 INFO  sqd:processor 11916919 / 18959150, rate: 4775 blocks/sec, mapping: 23402 blocks/sec, 2925 items/sec, eta: 25m
+   [eth-processor] 03:07:18 INFO  sqd:processor:mapping Got 0 ERC20 transfers
    ```
 
    The squid should download enough data in 3-4 hours. When it's done, stop it with Ctrl-C, then stop and remove the query gateway containers with
@@ -173,7 +175,7 @@ Sync this squid using the key from the quest card. The syncing progress is track
 
 # About this squid
 
-This [squid](https://docs.subsquid.io/) retrieves native token burns on ETH, BSC, Base and Moonbeam. It also grabs Transfer events from popular stablecoins on the same networks. It does not keep any data, as it's sole purpose is to stress test the network.
+This [squid](https://docs.subsquid.io/) retrieves `Transfer` events on popular stablecoin contracts on ETH, BSC, Base and Moonbeam. It does not keep any data, as it's sole purpose is to stress test the network.
 
 Data ingester ("processor") code is defined for all networks in `src/testConfig.ts`. The executable `src/main.ts` chooses the settings to use based on its sole command line argument. The scripts file `commands.json` contains commands for running each processor (`process:eth`, `process:bsc`, `process:base` and `process:moonbeam`). You can also use `sqd run` to run all the services at once; the list of services is kept in the [squid manifest](https://docs.subsquid.io/cloud/reference/manifest/) at `squid.yaml`.
 
