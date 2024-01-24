@@ -11,7 +11,7 @@
       "cmd": ["tsc"]
     },
     "check-key": {
-      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/networkTestTwoHighTrafficLogs.key`"],
+      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/networkTestTwoHighTrafficLogs.key"],
       "hidden": true
     },
     "stake": {
