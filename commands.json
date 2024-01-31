@@ -11,13 +11,13 @@
       "cmd": ["tsc"]
     },
     "check-key": {
-      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/query-gateway/keys/networkTestTwoHighTrafficLogs.key"],
+      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/networkTestTwoHighTrafficLogs.key"],
       "hidden": true
     },
     "get-peer-id": {
       "deps": ["check-key"],
       "description": "Get a peer ID given the public key",
-      "cmd": ["node", "scripts/getPeerIdFromGatewayKey.js", "query-gateway/keys/query-gateway/keys/networkTestTwoHighTrafficLogs.key"]
+      "cmd": ["node", "scripts/getPeerIdFromGatewayKey.js", "query-gateway/keys/networkTestTwoHighTrafficLogs.key"]
     },
     "up": {
       "deps": ["check-key"],

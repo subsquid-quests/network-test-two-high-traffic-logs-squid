@@ -17,7 +17,7 @@ try {
 		'-e', `STAKE_AMOUNT=${amt}`,
 		'-e', `STAKE_DURATION=${duration*6}`,
 		'-e', `PRIVATE_KEY=0x${pk}`,
-		'-v', './query-gateway/keys/networkTestTwoHighTrafficLogs.key:/app/client.key',
+		'-v', './query-gateway/keys/networkTestOneUniformLoad.key:/app/client.key',
 		'-e', 'GATEWAY_KEY_PATH=/app/client.key',
 		'subsquid/register-gateway:latest'
 	], {stdio: 'inherit'})
