@@ -11,13 +11,13 @@
       "cmd": ["tsc"]
     },
     "check-key": {
-      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/networkTestTwoHighTrafficLogs.key"],
+      "cmd": ["node", "scripts/checkKey.js", "query-gateway/keys/query-gateway/keys/networkTestTwoHighTrafficLogs.key"],
       "hidden": true
     },
-    "stake": {
+    "get-peer-id": {
       "deps": ["check-key"],
-      "description": "Runs a script that interactively walks you through staking tSQD for a Subsquid network gateway",
-      "cmd": ["node", "scripts/stake.js"]
+      "description": "Get a peer ID given the public key",
+      "cmd": ["node", "scripts/getPeerIdFromGatewayKey.js", "query-gateway/keys/query-gateway/keys/networkTestTwoHighTrafficLogs.key"]
     },
     "up": {
       "deps": ["check-key"],

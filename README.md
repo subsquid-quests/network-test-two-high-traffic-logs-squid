@@ -16,7 +16,7 @@
 
 The network is ready for its first stress test! Help with it by running this squid.
 
-Note: you'll need to have at least 100 tSQD to complete this quest. Obtain them by doing other quests first.
+Note: you'll need to have at least **update the exact amount** tSQD to complete this quest. Obtain them by doing other quests first.
 
 ### I. Install dependencies: Node.js, Docker, Git.
 
@@ -109,24 +109,33 @@ A healthy response should look similar to
 
 2. Press "Get Key" button in the quest card to obtain the `networkTestTwoHighTrafficLogs.key` key file. Save it to the `./query-gateway/keys` subfolder of the squid folder. The file will be used to identify your local query gateway when staking tSQD to allocate bandwidth and as it operates.
 
-3. Stake some tSQD on the ID of your future gateway by running
+3. Get the peer ID that your future gateway will have by running:
    ```bash
-   sqd stake
+   sqd get-peer-id
    ```
-   The command will prompt you for the private key of the wallet where you have your tSQDs. The key will be used to sign the staking transaction. [Here's an instruction on how to get your private key on Metamask](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-4. Start the query gateway with
+4. Stake **enter the exact amount here** tSQD on the ID of your future gateway by filling the form on the [staking page](https://app.subsquid.io/profile/gateways/add) ([dev version](https://app.devsquid.net/profile/gateways/add)). Tips:
+   - Gateway registration and staking are two separate actions. Do not forget to do both.
+   - Make sure that you stake your tSQD for at least five hours. On Arbitrum Sepolia that's roughly 10000 blocks.
+
+5. Wait for about 15 minutes. This is the time it takes for Subsquid Network to enter a new epoch, at the beginning of which computation units (CUs) will be allocated towards your gateway based on your tSQD stake.
+
+6. Start the query gateway with
    ```bash
-   WALLET_PRIVATE_KEY=XXXX... sqd up
+   sqd up
    ```
-   The key will be used for signing the CU allocation transactions.
+   If you'd like to check if the staking was successful, you can inspect the logs of the query gateway container with `docker logs <query_gateway_container_name>`. After one-two minutes required for the node startup it should contain some lines like this one:
+   ```
+   [2024-01-31T14:55:06Z INFO  query_gateway::chain_updates] allocated CU: 24759 spent CU: 0
+   ```
+   **update the exact CU amount**
 
-5. Build the squid code
+7. Build the squid code
    ```bash
    sqd build
    ```
 
-6. Start your squid with
+8. Start your squid with
    ```bash
    sqd run .
    ```
@@ -157,11 +166,15 @@ A healthy response should look similar to
    [eth-processor] 03:07:18 INFO  sqd:processor:mapping Got 0 ERC20 transfers
    ```
 
-   The squid should download enough data in 3-4 hours. When it's done, stop it with Ctrl-C, then stop and remove the query gateway containers with
-   ```bash
-   sqd down
-   ```
-   You will get a warning about the missing `WALLET_PRIVATE_KEY` variable. That's normal.
+   The squid should download enough data in 3-4 hours.
+
+> [!TIP]
+> Do not worry if the squid fails: any progress it made is saved. Simply restart it if it happens.
+
+When done, stop the squid processor with Ctrl-C, then stop and remove the query gateway container with
+```bash
+sqd down
+```
 
 # Quest Info
 
