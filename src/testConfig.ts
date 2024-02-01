@@ -1,7 +1,9 @@
+import {assertNotNull} from '@subsquid/util-internal'
+
 import {allLogFields, allBlockHeaderFields} from './allFields'
 import {getRandomInt} from './utils'
 
-const gateway = 'http://localhost:8000'
+const gateway = assertNotNull(process.env.SUBSQUID_NETWORK_GATEWAY)
 
 export const ERC20_TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 
