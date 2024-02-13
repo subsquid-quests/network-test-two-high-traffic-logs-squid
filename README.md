@@ -98,25 +98,25 @@ A healthy response should look similar to
 
 1. Open a terminal and run the following commands to retrieve the squid, enter its folder and install dependencies:
    ```bash
-   sqd init network-test-two-high-traffic-logs-squid -t https://github.com/subsquid-quests/network-test-two-high-traffic-logs-squid
+   sqd init high-traffic-logs-squid -t https://github.com/subsquid-quests/network-test-two-high-traffic-logs-squid
    ```
    ```bash
-   cd network-test-two-high-traffic-logs-squid
+   cd high-traffic-logs-squid
    ```
    ```bash
    npm ci
    ```
 
-2. Press "Get Key" button in the quest card to obtain the `networkTestTwoHighTrafficLogs.key` key file. Save it to the `./query-gateway/keys` subfolder of the squid folder. The file will be used to identify your local query gateway when staking tSQD to allocate bandwidth and as it operates.
+2. Press "Get Key" button in the quest card to obtain the `networkTestTwoHighTrafficLogs.key` key file. Save it to the `./query-gateway/keys` subfolder of the squid folder. The file will be used to identify your local query gateway when locking tSQD to allocate bandwidth and as it operates.
 
 3. Get the peer ID that your future gateway will have by running:
    ```bash
    sqd get-peer-id
    ```
 
-4. Register your future gateway and stake 100 tSQD on it using [this page](https://app.subsquid.io/profile/gateways/add). Tips:
-   - Gateway registration and staking are two separate actions. Do not forget to do both.
-   - Make sure that you stake your tSQD for at least five hours. On Arbitrum Sepolia that's roughly 1500 (L1) blocks.
+4. Register your future gateway and get CU for 100 tSQD on it using [this page](https://app.subsquid.io/profile/gateways/add?testnet). Tips:
+   - Gateway registration and tSQD locking are two separate actions. Do not forget to do both.
+   - Make sure that you lock your tSQD for at least five hours. On Arbitrum Sepolia that's roughly 1500 (L1) blocks.
    - Leave the "Publicly available" switch disabled.
 
 5. Wait for about 15 minutes. This is the time it takes for Subsquid Network to enter a new epoch, at the beginning of which computation units (CUs) will be allocated towards your gateway based on your tSQD stake.
