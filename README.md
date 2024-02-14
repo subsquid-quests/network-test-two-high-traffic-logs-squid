@@ -16,7 +16,7 @@
 
 The network is ready for its first stress test! Help with it by running this squid.
 
-Note: you'll need to have at least 100 tSQD to complete this quest. Obtain them by doing other quests first.
+Note: you'll need to have at least 10 tSQD to complete this quest. Obtain them by doing other quests first. If you locked any of your tSQD before, check if you can unlock any at the [gateways page](https://app.subsquid.io/profile/gateways?testnet).
 
 ### I. Install dependencies: Node.js, Docker, Git.
 
@@ -109,17 +109,27 @@ A healthy response should look similar to
 
 2. Press "Get Key" button in the quest card to obtain the `networkTestTwoHighTrafficLogs.key` key file. Save it to the `./query-gateway/keys` subfolder of the squid folder. The file will be used to identify your local query gateway when locking tSQD to allocate bandwidth and as it operates.
 
-3. Get the peer ID that your future gateway will have by running:
+3. Get the peer ID of your future gateway by running:
    ```bash
    sqd get-peer-id
    ```
 
-4. Register your future gateway and get CU for 100 tSQD on it using [this page](https://app.subsquid.io/profile/gateways/add?testnet). Tips:
+4. Register your future gateway and get computation units (*CUs*) for 10 tSQD on it using [this page](https://app.subsquid.io/profile/gateways/add?testnet). Tips:
    - Gateway registration and tSQD locking are two separate actions. Do not forget to do both.
-   - Make sure that you lock your tSQD for at least five hours. On Arbitrum Sepolia that's roughly 1500 (L1) blocks.
    - Leave the "Publicly available" switch disabled.
+   - The "Lock blocks duration" field lets you tune the length of time during which you'll be able to query the network, measured in blocks of Arbitrum Sepolia's L1 (that is, Ethereum Sepolia). The minumum is five hours, but you can opt to lock for longer if you intend to work on the quest over multiple days.
 
-5. Wait for about 15 minutes. This is the time it takes for Subsquid Network to enter a new epoch, at the beginning of which computation units (CUs) will be allocated towards your gateway based on your tSQD stake.
+     | Time              | Blocks |
+     |:-----------------:|:------:|
+     | 5 hours (minimum) | 1500   |
+     | 24 hours          | 7200   |
+     | 72 hours          | 21600  |
+
+     Be aware that you'll need to unlock your tokens manually after the end of this period. The tokens you get back will be used in subsequent quests.
+
+     If the locking period expires before you finish your work, simply unlock your tokens, then lock them again.
+
+5. Wait for about 15 minutes. This is the time it takes for Subsquid Network to enter a new epoch, at the beginning of which CUs will be allocated towards your gateway based on how many tSQD you locked.
 
 6. Start the query gateway with
    ```bash
@@ -127,7 +137,7 @@ A healthy response should look similar to
    ```
    If you'd like to check if the staking was successful, you can inspect the logs of the query gateway container with `docker logs <query_gateway_container_name>`. After one-two minutes required for the node startup it should contain some lines like this one:
    ```
-   [2024-01-31T14:55:06Z INFO  query_gateway::chain_updates] allocated CU: 4830 spent CU: 0
+   [2024-01-31T14:55:06Z INFO  query_gateway::chain_updates] allocated CU: 48300 spent CU: 0
    ```
 
 7. Build the squid code
@@ -176,7 +186,7 @@ When done, stop the squid processor with Ctrl-C, then stop and remove the query 
 sqd down
 ```
 
-9. After the staking period ends, go to the [gateways staking page](https://app.subsquid.io/profile/gateways/) and unstake your tSQD - you will need them for other quests.
+9. After the locking period ends, go to the [gateways page](https://app.subsquid.io/profile/gateways/) and unlock your tSQD - you will need them for other quests.
 
 # Quest Info
 
