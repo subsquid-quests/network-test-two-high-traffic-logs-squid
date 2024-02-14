@@ -135,7 +135,7 @@ A healthy response should look similar to
    ```bash
    sqd up
    ```
-   If you'd like to check if the staking was successful, you can inspect the logs of the query gateway container with `docker logs <query_gateway_container_name>`. After one-two minutes required for the node startup it should contain some lines like this one:
+   If you'd like to check if the locking was successful, you can inspect the logs of the query gateway container with `docker logs <query_gateway_container_name>`. After one-two minutes required for the node startup it should contain some lines like this one:
    ```
    [2024-01-31T14:55:06Z INFO  query_gateway::chain_updates] allocated CU: 48300 spent CU: 0
    ```
