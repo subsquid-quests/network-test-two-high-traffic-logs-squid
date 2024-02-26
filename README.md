@@ -16,7 +16,10 @@
 
 The network is ready for its first stress test! Help with it by running this squid.
 
-Note: you'll need to have at least 10 tSQD to complete this quest. Obtain them by doing other quests first. If you locked any of your tSQD before, check if you can unlock any at the [gateways page](https://app.subsquid.io/profile/gateways?testnet).
+Note: you'll need to have at least 10 tSQD to complete this quest. Obtain them by doing other quests first.
+
+> [!TIP]
+> If you locked any of your tSQD before, check if you can unlock any at the [gateways page](https://app.subsquid.io/profile/gateways?testnet).
 
 ### I. Install dependencies: Node.js, Docker, Git.
 
